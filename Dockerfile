@@ -1,6 +1,6 @@
 FROM python:3.6.7
 
-ENV CHROMEDRIVER_VERSION=2.33
+ENV CHROMEDRIVER_VERSION=73.0.3683.68
 
 # Install chromedriver, heroku CLI, and coveralls
 RUN apt update -y && apt install -y chromium libgconf2-4 unzip sudo && \
