@@ -6,6 +6,7 @@ ENV CHROMEDRIVER_VERSION=73.0.3683.68
 RUN apt update -y && apt install -y chromium libgconf2-4 unzip sudo && \
 	curl -L -O https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip && \
 	unzip chromedriver_linux64.zip -d /usr/local/bin && \
+        chmod +x /usr/local/bin/chromedriver && \
 	rm chromedriver_linux64.zip && \
 	curl -L https://cli-assets.heroku.com/heroku-cli/channels/stable/heroku-cli-linux-x64.tar.gz | tar -zxv && \
 	mv heroku* /usr/local/lib/heroku && ln -s /usr/local/lib/heroku/bin/heroku /usr/local/bin/heroku && \
