@@ -12,6 +12,9 @@ RUN apt update -y && apt install -y chromium libgconf2-4 unzip sudo && \
 	mv heroku* /usr/local/lib/heroku && ln -s /usr/local/lib/heroku/bin/heroku /usr/local/bin/heroku && \
         pip install --upgrade pip && \
 	pip install pipenv coveralls && \
+        curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose && \
+        chmod +x ~/docker-compose && \
+        sudo mv ~/docker-compose /usr/local/bin/docker-compose && \
 	useradd -m ci && echo 'ci ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 ADD ssh_config /home/ci/.ssh/config
