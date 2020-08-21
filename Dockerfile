@@ -3,7 +3,7 @@ FROM python:3.6.7
 ENV CHROMEDRIVER_VERSION=73.0.3683.68
 
 # Install chromedriver, heroku CLI, and coveralls
-RUN apt update -y && apt install -y chromium libgconf2-4 unzip sudo && \
+RUN apt update -y && apt install -y chromium libgconf2-4 unzip sudo apt-transport-https ca-certificates curl gnupg-agent software-properties-common && \
 	curl -L -O https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip && \
 	unzip chromedriver_linux64.zip -d /usr/local/bin && \
         chmod +x /usr/local/bin/chromedriver && \
@@ -15,6 +15,10 @@ RUN apt update -y && apt install -y chromium libgconf2-4 unzip sudo && \
         curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose && \
         chmod +x ~/docker-compose && \
         sudo mv ~/docker-compose /usr/local/bin/docker-compose && \
+	curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - && \
+	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian  $(lsb_release -cs) stable" && \
+	sudo apt-get update && \
+	sudo apt-get install -y docker-ce docker-ce-cli containerd.io && \
 	useradd -m ci && echo 'ci ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 ADD ssh_config /home/ci/.ssh/config
