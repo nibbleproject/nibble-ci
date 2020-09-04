@@ -1,10 +1,10 @@
 FROM python:3.8.5
 
-ENV CHROMEDRIVER_VERSION=73.0.3683.68
+ENV CHROMEDRIVER_VERSION=85.0.4183.83
 ENV DOCKER_COMPOSE_VERSION=1.19.0
 
 # Install chromedriver, heroku CLI, and coveralls
-RUN apt update -y && apt install -y chromium libgconf-2-4 unzip sudo apt-transport-https ca-certificates curl gnupg-agent software-properties-common && \
+RUN apt-get update -y && apt-get install -y chromium libgconf-2-4 unzip sudo apt-transport-https ca-certificates curl gnupg-agent software-properties-common && \
 	curl -L -O https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip && \
 	unzip chromedriver_linux64.zip -d /usr/local/bin && \
         chmod +x /usr/local/bin/chromedriver && \
